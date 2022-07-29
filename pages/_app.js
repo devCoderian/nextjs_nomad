@@ -1,22 +1,17 @@
-import NavBar from '../components/NavBar'
+import Layout from '../components/Layout'
 import "../styles/globals.css"; //컴포넌트 X, _app.js에서만 가능하다.
-// import { global } from 'styled-jsx/css';
 
 //App => 이름 변경 상관없지만 _app.js 는 필수값
 export default function App({Component, pageProps}){ //Prop 두개 고정/ Component, pageProps
     return (
             <>
-                <NavBar />
-                <Component {...pageProps} />
-                <style jsx global>{`
-                        a {
-                            color: white;
-                        }
-                    `}
-                </style>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
             </>
         );
 }
+
 // + 파일명.module.css 파일 형태를 제외한 모든 나머지 css파일들은 _app.js에서만 import해와서 사용해야 한다. (글로벌 css간의 충돌을 피하기 위해서이다.)
 // https://nextjs.org/docs/messages/css-global
 

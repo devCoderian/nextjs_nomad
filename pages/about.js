@@ -1,8 +1,6 @@
-import Navbar from "../components/NavBar";
-
-export default function about(){
+export default function About(){
     return  <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <h1>about</h1>
 </>
 }

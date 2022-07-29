@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+//로컬 원격 이미지들은 next에서 제공하는 이미지 컴포넌트 사용
 export default function Navbar(){
 
     const router = useRouter();
@@ -8,42 +8,43 @@ export default function Navbar(){
 
     return( 
             <nav>
-               <Link href ="/">
-                    <a style={{ color: router.pathname === '/'? 'active': 'blue'}}>Home</a>
-               </Link>
-               <Link href ="/about">
-                    <a style={{ color: router.pathname === '/about'? 'active': 'blue'}}>about</a>
-               </Link>
-                {/* a태그를 Next에서 이동할 때 사용하지 말기 */}
-                {/* <a href = "/">Home</a>
-                <a href ="/about">About</a> */}
-                <style jsx>{`
-                    nav{
-                        background-color: tomato;
-                    }
-                    a{
-                        text-decoration: none;
-                    }
-                    .active{
-                        color: yellow;
-                    }
-                `}</style>
-                {/* globalStyles 추가하는 법 
-                    <styles jsx global>
-                    {`
-                    a{
-                        color: white;
-                        color: ${props.color}; //이런식으로 props도 사용가능
-                    }   
-                    `}
-                    </styles>
-                 이 방법의 단점 => 페이지별로 적용해주어야 함.
-
-                 App component 사용하기
-                 App component는 모든 컴포넌트의 청사진 => next js 프레임워크 제공 기능
-                 //_app.js 생성
-                //Next.js 가 가장 먼저 바라보는 파일 _app.js
-                 */}
-            </nav>
+                {/* public에 담겨있으면 경로가 필요없다. nextjs는 정적 파일 관리가 쉬움 */}
+            <img src="/vercel.svg" /> 
+            <div>
+                <Link href="/">
+                    <a className={router.pathname === "/" ? "active" : ""}>Home</a>
+                </Link>
+                <Link href="/about">
+                    <a className={router.pathname === "/about" ? "active" : ""}>About</a>
+                </Link>
+            </div>
+            <style jsx>{`
+                    nav {
+                        display: flex;
+                        gap: 10px;
+                        flex-direction: column;
+                        align-items: center;
+                        padding-top: 20px;
+                        padding-bottom: 10px;
+                        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+                      }
+                      img {
+                        max-width: 100px;
+                        margin-bottom: 5px;
+                      }
+                      nav a {
+                        font-weight: 600;
+                        font-size: 18px;
+                      }
+                      .active {
+                        color: tomato;
+                      }
+                      nav div {
+                        display: flex;
+                        gap: 10px;
+                      }
+            `}</style>
+        </nav>
     )
 }
